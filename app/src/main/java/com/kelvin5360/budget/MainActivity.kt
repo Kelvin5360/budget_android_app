@@ -4,7 +4,9 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 
 const val EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE"
 
@@ -15,13 +17,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    fun sendMessage(view: View) {
-        val editText = findViewById<EditText>(R.id.editText)
-        val message = editText.text.toString()
-        val intent = Intent(this, DisplayMessageActivity::class.java).apply {
-            putExtra(EXTRA_MESSAGE, message)
-        }
-        startActivity(intent)
+    fun addAmount(view: View) {
+        val sumText = findViewById<EditText>(R.id.sumText)
+        val existingSum = if ("" == sumText.text.toString()) 0 else sumText.text.toString().toInt()
+        val button: Button = view as Button
+        sumText.setText((existingSum + button.text.toString().toInt()).toString())
     }
 
 }
